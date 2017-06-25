@@ -13,7 +13,6 @@ import {
   LISTINGS_DELETE,
 } from '../../shared/routes'
 
-
 const router = express.Router()
 
 router.route(LISTINGS_INDEX).get((req, res, next) => {
