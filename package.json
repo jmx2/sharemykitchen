@@ -16,7 +16,7 @@
     "prod:start": "export NODE_ENV=production && pm2 start lib/server && pm2 logs",
     "prod:stop": "pm2 delete server",
     "lint": "eslint src webpack.config.babel.js --ext .js,.jsx",
-    "test": "yarn lint && jest",
+    "test": "export NODE_ENV=testing && yarn lint && jest",
     "test:local": "export NODE_ENV=testing && jest --verbose",
     "precommit": "yarn test",
     "prepush": "yarn test && yarn prod:build",

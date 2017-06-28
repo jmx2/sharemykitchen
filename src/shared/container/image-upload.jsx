@@ -40,7 +40,7 @@ class ImageUpload extends React.Component {
   }
 
   onUploadSuccess(data) {
-    this.setState({ complete: true })
+    this.setState({ complete: true, loading: false })
     if (this.props.onUploadSuccess) this.props.onUploadSuccess(data.Location)
   }
 
@@ -63,10 +63,16 @@ class ImageUpload extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <div
         className="form-group"
       >
+        {this.state.loading ? (
+          <div>Progress...</div>
+        ) : (
+          <div>Complete</div>
+        )}
         <label className="form-label text-bold" htmlFor="file">Picture</label>
         <input
           className="form-input"
