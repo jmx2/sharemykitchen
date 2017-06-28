@@ -21,6 +21,7 @@ const Listing = (props) => {
               src={props.kitchen.pictures[0]}
               alt="kitchen"
             />
+            <div>Map should go here</div>
           </div>
           <div className="card-body text-center col-6">
             <strong>Area:</strong> {props.kitchen.area} <br />
