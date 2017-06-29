@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 import { listingsShowRoute } from '../routes'
 
 const Listing = (props) => {
-  console.log('props', props)
   return (
     <div className="card col-5">
       <Link
@@ -24,9 +23,11 @@ const Listing = (props) => {
             alt="kitchen"
           />
           {props.user && props.user._id === props.kitchen.host_id && (
-            <button onClick={
-              () => { props.handleRemoveListingClick(props.kitchen._id) }
-            } id="remove-listing" type="button">Remove Listing</button>
+            <button
+              onClick={() => { props.handleRemoveListingClick(props.kitchen._id) }}
+              id="remove-listing"
+              type="button"
+            >Remove Listing</button>
           )}
         </div>
         <div className="card-body text-center col-6">

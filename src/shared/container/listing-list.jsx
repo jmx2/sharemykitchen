@@ -53,7 +53,7 @@ class ListingList extends React.Component {
   }
 
   render() {
-    console.log('user', this.props.user)
+    // console.log('user', this.props.user)
     return (
       <div className="listing-list">
         <div className="divider">
