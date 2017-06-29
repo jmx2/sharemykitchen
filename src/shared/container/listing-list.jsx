@@ -14,6 +14,27 @@ class ListingList extends React.Component {
     this.state = {
       listings: [],
     }
+    this.handleRemoveListingClick = (id) => {
+      fetch('http://localhost:8000/api/listings/' + id, {
+      	method: 'DELETE', credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }).then(() => {
+        const that = this
+        const url = `/api${LISTINGS_INDEX + this.props.query}`
+        fetch(url)
+          .then((response) => {
+            return response.json()
+          })
+          .then((listings) => {
+            that.setState({
+              listings,
+            })
+          })
+      })
+      // console.log(this.state.listings)
+    }
   }
 
   componentDidMount() {
@@ -40,6 +61,7 @@ class ListingList extends React.Component {
                 <Listing
                   key={kitchen._id}
                   kitchen={kitchen}
+                  handleRemoveListingClick={this.handleRemoveListingClick}
                 />
               )
             })}
