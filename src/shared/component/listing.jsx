@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { listingsShowRoute } from '../routes'
 
 const Listing = (props) => {
-  // console.log('props', props.kitchen._id)
+  console.log('props', props)
   return (
     <div className="card col-5">
       <Link
@@ -23,9 +23,11 @@ const Listing = (props) => {
             src={props.kitchen.pictures[0]}
             alt="kitchen"
           />
-          <button onClick={
-            () => { props.handleRemoveListingClick(props.kitchen._id) }
-          } id="remove-listing" type="button">Remove Listing</button>
+          {props.user && props.user._id === props.kitchen.host_id && (
+            <button onClick={
+              () => { props.handleRemoveListingClick(props.kitchen._id) }
+            } id="remove-listing" type="button">Remove Listing</button>
+          )}
         </div>
         <div className="card-body text-center col-6">
           <strong>Area:</strong> {props.kitchen.area} <br />
@@ -44,6 +46,11 @@ const Listing = (props) => {
 
 Listing.propTypes = {
   kitchen: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  user: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+}
+
+Listing.defaultProps = {
+  user: {},
 }
 
 export default Listing

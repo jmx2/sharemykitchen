@@ -2,6 +2,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
 
 import { LISTINGS_INDEX } from '../routes'
 import Listing from '../component/listing'
@@ -52,6 +53,7 @@ class ListingList extends React.Component {
   }
 
   render() {
+    console.log('user', this.props.user)
     return (
       <div className="listing-list">
         <div className="divider">
@@ -62,6 +64,7 @@ class ListingList extends React.Component {
                   key={kitchen._id}
                   kitchen={kitchen}
                   handleRemoveListingClick={this.handleRemoveListingClick}
+                  user={this.props.user}
                 />
               )
             })}
@@ -76,4 +79,9 @@ ListingList.propTypes = {
   query: PropTypes.string.isRequired,
 }
 
-export default ListingList
+const mapStateToProps = (state) => {
+  return {
+    user: state.authentication.user
+  }
+}
+export default connect(mapStateToProps)(ListingList)
