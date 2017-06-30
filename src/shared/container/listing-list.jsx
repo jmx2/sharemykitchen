@@ -2,6 +2,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
 
 import { LISTINGS_INDEX } from '../routes'
 import Listing from '../component/listing'
@@ -13,6 +14,27 @@ class ListingList extends React.Component {
 
     this.state = {
       listings: [],
+    }
+    this.handleRemoveListingClick = (id) => {
+      fetch('http://localhost:8000/api/listings/' + id, {
+      	method: 'DELETE', credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }).then(() => {
+        const that = this
+        const url = `/api${LISTINGS_INDEX + this.props.query}`
+        fetch(url)
+          .then((response) => {
+            return response.json()
+          })
+          .then((listings) => {
+            that.setState({
+              listings,
+            })
+          })
+      })
+      // console.log(this.state.listings)
     }
   }
 
@@ -31,6 +53,7 @@ class ListingList extends React.Component {
   }
 
   render() {
+    // console.log('user', this.props.user)
     return (
       <div className="listing-list">
         <div className="divider">
@@ -40,6 +63,8 @@ class ListingList extends React.Component {
                 <Listing
                   key={kitchen._id}
                   kitchen={kitchen}
+                  handleRemoveListingClick={this.handleRemoveListingClick}
+                  user={this.props.user}
                 />
               )
             })}
@@ -54,4 +79,9 @@ ListingList.propTypes = {
   query: PropTypes.string.isRequired,
 }
 
-export default ListingList
+const mapStateToProps = (state) => {
+  return {
+    user: state.authentication.user
+  }
+}
+export default connect(mapStateToProps)(ListingList)

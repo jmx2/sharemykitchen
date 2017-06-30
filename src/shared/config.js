@@ -13,6 +13,8 @@ export const FACEBOOK_CLIENT_ID = process.env.FACEBOOK_CLIENT_ID
 export const FACEBOOK_CLIENT_SECRET = process.env.FACEBOOK_CLIENT_SECRET
 export const FACEBOOK_CALLBACK_URL = process.env.FACEBOOK_CALLBACK_URL
 
+export const GOOGLE_MAP_ACCESS_KEY = process.env.GOOGLE_MAP_ACCESS_KEY
+
 export const COOKIE_SECRET = process.env.COOKIE_SECRET
 
 export const IO_CONNECT = 'connect'

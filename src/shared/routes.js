@@ -24,7 +24,7 @@ export const REVIEWS_DELETE = '/reviews/:id'
 export const LISTINGS_INDEX = '/listings'
 export const LISTINGS_SHOW = '/listings/:id'
 export const LISTINGS_CREATE = '/listings/new'
-export const LISTINGS_UPDATE = '/listings/:id'
+export const LISTINGS_UPDATE = '/listings/update/:id'
 export const LISTINGS_DELETE = '/listings/:id'
 
 export const HOME_PAGE_ROUTE = '/'
@@ -78,7 +78,7 @@ export const listingsShowRoute = (id) => {
 }
 
 export const listingsUpdateRoute = (id) => {
-  return `/listings/${id || ':id'}`
+  return `/listings/update/${id || ':id'}`
 }
 
 export const listingsDeleteRoute = (id) => {

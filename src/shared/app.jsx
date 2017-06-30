@@ -10,6 +10,7 @@ import {
   LISTINGS_INDEX,
   LISTINGS_SHOW,
   LISTINGS_CREATE,
+  LISTINGS_UPDATE,
   AUTH_ME,
 } from './routes'
 
@@ -20,6 +21,7 @@ import ProfilePage from './component/page/profile-page'
 import ListingsPage from './component/page/listings-page'
 import ListingDetailPage from './component/page/listing-detail-page'
 import ListingsCreatePage from './component/page/listings-create-page'
+import ListingsUpdatePage from './component/page/listings-update-page'
 
 const App = () => {
   return (
@@ -30,6 +32,7 @@ const App = () => {
         <Route exact path={HOME_PAGE_ROUTE} render={() => <HomePage />} />
         <Route exact path={AUTH_ME} render={() => <ProfilePage />} />
         <Route exact path={LISTINGS_CREATE} render={() => <ListingsCreatePage />} />
+        <Route exact path={LISTINGS_UPDATE} render={() => <ListingsUpdatePage />} />
         <Route exact path={LISTINGS_SHOW} render={() => <ListingDetailPage />} />
         <Route exact path={LISTINGS_INDEX} render={() => <ListingsPage />} />
         <Route render={() => <NotFoundPage />} />
