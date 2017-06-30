@@ -12,14 +12,14 @@ import {
 
 const ListingDetailPage = (props) => {
   const urlWithId = props.location.pathname
-  console.log('inside listing detail props', props.location)
+  // console.log('inside listing detail props', props.match.params.id)
   return (
     <div>
       <OneListing urlWithId={urlWithId} />
       <section className="navbar-section">
         <NavLink
           key={'Edit Listing'}
-          to={LISTINGS_UPDATE}
+          to={listingsUpdateRoute(props.match.params.id)}
           className="btn btn-link mr-10"
           exact
         >

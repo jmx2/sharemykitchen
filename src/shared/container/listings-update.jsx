@@ -34,6 +34,20 @@ class ListingsCreate extends Component {
     this.onFileUpload = this.onFileUpload.bind(this)
   }
 
+  // componentWillMount() {
+  //   const that = this
+  //   const url = `/api${LISTINGS_INDEX + this.props.query}`
+  //   fetch(url)
+  //     .then((response) => {
+  //       return response.json()
+  //     })
+  //     .then((listings) => {
+  //       that.setState({
+  //         listings,
+  //       })
+  //     })
+  // }
+
   onSubmit(e) {
     e.preventDefault()
     this.props.handleSubmit(this.state)
@@ -54,7 +68,9 @@ class ListingsCreate extends Component {
     }
   }
 
+
   render() {
+    console.log('inside update url', this.props.history.location.pathname)
     return (
       <form
         onSubmit={this.onSubmit}
