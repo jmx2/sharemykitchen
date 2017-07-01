@@ -90,6 +90,7 @@ a:focus {
 
   height: 100%;
   display: flex;
+  z-index: 0;
 }
 
 .custom-carousel-item-text {
@@ -98,4 +99,14 @@ a:focus {
   align-self: flex-end;
   margin-left: 10%;
   margin-bottom: 5%;
+}
+
+.dropdown {
+  z-index: 999;
+}
+
+.auth_icon {
+  width: 25px;
+  height:auto;
+  margin-right: 8px;
 }

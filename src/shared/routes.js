@@ -1,5 +1,9 @@
 export const AUTH_FACEBOOK = '/facebook'
 export const AUTH_FACEBOOK_CALLBACK = '/facebook/callback'
+export const AUTH_TWITTER = '/twitter'
+export const AUTH_TWITTER_CALLBACK = '/twitter/callback'
+export const AUTH_GOOGLE = '/google'
+export const AUTH_GOOGLE_CALLBACK = '/google/callback'
 export const AUTH_ME = '/me'
 export const AUTH_LOGOUT = '/logout'
 

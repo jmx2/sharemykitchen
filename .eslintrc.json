@@ -8,6 +8,7 @@
     "compat"
   ],
   "rules": {
+    "linebreak-style": 0,
     "semi": [2, "never"],
     "no-unexpected-multiline": 2,
     "arrow-body-style": ["error", "always"],
