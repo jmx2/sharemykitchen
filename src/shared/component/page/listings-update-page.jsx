@@ -2,20 +2,20 @@ import React from 'react'
 import { withRouter } from 'react-router'
 import PropTypes from 'prop-types'
 
-import ListingsCreate from '../../container/listings-create'
+import ListingsUpdate from '../../container/listings-update'
 
 
-const ListingsCreatePage = (props) => {
+const ListingsUpdatePage = (props) => {
   return (
     <div>
       <div className="divider" />
-      <ListingsCreate history={props.history} />
+      <ListingsUpdate history={props.history} />
     </div>
   )
 }
 
-ListingsCreatePage.propTypes = {
+ListingsUpdatePage.propTypes = {
   history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 }
 
-export default withRouter(ListingsCreatePage)
+export default withRouter(ListingsUpdatePage)

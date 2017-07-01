@@ -89,7 +89,7 @@ router.route(LISTINGS_UPDATE).put((req, res, next) => {
     .catch(next)
 })
 
-router.route(LISTINGS_DELETE).delete((req, res, next) => {
+router.delete(LISTINGS_DELETE, authRequired, (req, res, next) => {
   const { id } = req.params
   if (!mongoose.Types.ObjectId.isValid(id)) {
     res.sendStatus(404)
@@ -99,13 +99,16 @@ router.route(LISTINGS_DELETE).delete((req, res, next) => {
   Listing
     .findById(id)
     .then((listing) => {
-      if (listing) {
-        listing
+      console.log(listing.host_id)
+      console.log(req.user._id)
+      if (listing && JSON.stringify(listing.host_id) === JSON.stringify(req.user._id)) {
+        return listing
           .remove()
           .then((deletedListing) => {
             res.json(deletedListing)
           })
-        return
+      } else {
+        res.sendStatus(401)
       }
       res.sendStatus(404)
     })

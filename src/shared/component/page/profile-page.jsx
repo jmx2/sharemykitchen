@@ -8,14 +8,14 @@ import { AUTH_LOGOUT } from '../../routes'
 const ProfilePage = () => {
   return (
     <div>
-      <h1 
+      <h1
         className="text-center"
       >
         Profile Page
       </h1>
       <Profile />
-      <a 
-        className="btn btn-primary" 
+      <a
+        className="btn btn-primary"
         href={`/auth${AUTH_LOGOUT}`}
       >
         Logout
