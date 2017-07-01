@@ -47,7 +47,7 @@ class ListingsCreate extends Component {
       })
       .then((data) => {
         // console.log('response in update', data)
-        this.setState({address: data.address, area: data.area, name: data.name, rate: data.rate})
+        this.setState({address: data.address, area: data.area, name: data.name, rate: data.rate, pictures: data.pictures, features: data.features})
         // FORM_FIELDS[0].value = data.name
         // FORM_FIELDS[1].value = data.address
         // FORM_FIELDS[2].value = data.rate
@@ -59,8 +59,8 @@ class ListingsCreate extends Component {
   onSubmit(e) {
     e.preventDefault()
     // this.props.handleSubmit(this.state)
-    console.log('this.state in PUT', this.state)
-    console.log('slice', this.props.history.location.pathname.slice(17))
+    // console.log('this.state in PUT', this.state)
+    // console.log('slice', this.props.history.location.pathname.slice(17))
     // var form = new FormData()
     // form.append('address', this.state.address)
     fetch('/api/listings/update/' + this.props.history.location.pathname.slice(17), {
@@ -72,7 +72,8 @@ class ListingsCreate extends Component {
     }).then((data) => {
       return data.json()
     }).then((data) => {
-      console.log('PUT return data', data)
+      // console.log('PUT return data', data)
+      this.props.history.push('/listings')
     })
   }
 
