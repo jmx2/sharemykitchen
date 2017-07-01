@@ -78,13 +78,6 @@ class Listing extends React.Component {
                   lng={this.state.coordinates.lng}
                 />
               </GoogleMapReact>
-              {this.props.user && this.props.user._id === this.props.kitchen.host_id && (
-                <button
-                  onClick={() => { this.props.handleRemoveListingClick(this.props.kitchen._id) }}
-                  id="remove-listing"
-                  type="button"
-                >Remove Listing</button>
-              )}
             </div>
             <div className="card-body text-center col-6">
               <strong>Area:</strong> {this.props.kitchen.area} <br />
@@ -95,6 +88,13 @@ class Listing extends React.Component {
                   return <li key={key}><strong>{key}:</strong> {this.props.kitchen.features[key]}</li>
                 })}
               </ul>
+              {this.props.user && this.props.user._id === this.props.kitchen.host_id && (
+                <button
+                onClick={() => { this.props.handleRemoveListingClick(this.props.kitchen._id) }}
+                id="remove-listing"
+                type="button"
+                >Remove Listing</button>
+              )}
             </div>
           </div>
       </div>
