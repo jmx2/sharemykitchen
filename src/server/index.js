@@ -6,6 +6,7 @@ import socketIO from 'socket.io'
 import bodyParser from 'body-parser'
 import Raven from 'raven'
 import passport from 'passport'
+import morgan from 'morgan'
 import './db/'
 
 import setUpSocket from './set-up-socket'
@@ -30,6 +31,7 @@ const io = socketIO(http)
 setUpSocket(io)
 
 app.use(bodyParser.json())
+app.use(morgan('dev'))
 app.use(compression())
 app.use(bodyParser.json())
 app.use(session({

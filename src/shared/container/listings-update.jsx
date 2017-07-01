@@ -10,13 +10,17 @@ import AddMoreSelect from '../component/add-more-select'
 import ImageUpload from './image-upload'
 import ListingPreview from '../component/listing-preview'
 
-import { listingsShowRoute } from '../routes'
+import {
+  LISTINGS_INDEX,
+  listingsShowRoute,
+  LISTINGS_UPDATE,
+ } from '../routes'
 
 const FORM_FIELDS = [
-  { name: 'name', label: 'Name', type: 'text' },
-  { name: 'address', label: 'Address', type: 'adress' },
-  { name: 'rate', label: 'Rate (USD/Day)', type: 'number' },
-  { name: 'area', label: 'Area', type: 'text', tagName: 'textarea' },
+  { name: 'name', label: 'Name', type: 'text', value:'name' },
+  { name: 'address', label: 'Address', type: 'adress', value: 'address' },
+  { name: 'rate', label: 'Rate (USD/Day)', type: 'number', value: 50 },
+  { name: 'area', label: 'Area', type: 'text', tagName: 'textarea', value: 'area' },
 ]
 
 class ListingsCreate extends Component {
@@ -34,23 +38,42 @@ class ListingsCreate extends Component {
     this.onFileUpload = this.onFileUpload.bind(this)
   }
 
-  // componentWillMount() {
-  //   const that = this
-  //   const url = `/api${LISTINGS_INDEX + this.props.query}`
-  //   fetch(url)
-  //     .then((response) => {
-  //       return response.json()
-  //     })
-  //     .then((listings) => {
-  //       that.setState({
-  //         listings,
-  //       })
-  //     })
-  // }
+  componentDidMount() {
+    const that = this
+    const url = `/api${'/listings/' + this.props.history.location.pathname.slice(17)}`
+    fetch(url)
+      .then((response) => {
+        return response.json()
+      })
+      .then((data) => {
+        // console.log('response in update', data)
+        this.setState({address: data.address, area: data.area, name: data.name, rate: data.rate})
+        // FORM_FIELDS[0].value = data.name
+        // FORM_FIELDS[1].value = data.address
+        // FORM_FIELDS[2].value = data.rate
+        // FORM_FIELDS[3].value = data.area
+        // console.log('state', this.state)
+      })
+  }
 
   onSubmit(e) {
     e.preventDefault()
-    this.props.handleSubmit(this.state)
+    // this.props.handleSubmit(this.state)
+    console.log('this.state in PUT', this.state)
+    console.log('slice', this.props.history.location.pathname.slice(17))
+    // var form = new FormData()
+    // form.append('address', this.state.address)
+    fetch('/api/listings/update/' + this.props.history.location.pathname.slice(17), {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.state),
+    }).then((data) => {
+      return data.json()
+    }).then((data) => {
+      console.log('PUT return data', data)
+    })
   }
 
   onChange(e) {
@@ -70,7 +93,7 @@ class ListingsCreate extends Component {
 
 
   render() {
-    console.log('inside update url', this.props.history.location.pathname)
+    // console.log('inside update url', this.props.history.location.pathname.slice(17))
     return (
       <form
         onSubmit={this.onSubmit}
@@ -92,8 +115,9 @@ class ListingsCreate extends Component {
                 </label>
                 <TagName
                   id={field.name}
-                  type={field.type}
+                   type={field.type}
                   name={field.name}
+                  value={this.state[field.name]}
                   className="form-input"
                   onChange={this.onChange}
                   placeholder={field.placeholder}

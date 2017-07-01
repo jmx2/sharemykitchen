@@ -67,6 +67,7 @@ router.post(LISTINGS_CREATE, authRequired, (req, res, next) => {
 })
 
 router.route(LISTINGS_UPDATE).put((req, res, next) => {
+  console.log(req.params)
   const { id } = req.params
   if (!mongoose.Types.ObjectId.isValid(id)) {
     res.sendStatus(404)
