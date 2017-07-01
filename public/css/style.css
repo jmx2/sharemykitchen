@@ -28,6 +28,16 @@ a:focus {
   margin: auto;
   margin-top: 5px;
   margin-bottom: 5px;
+  overflow: auto;
+}
+
+.marker {
+  border: 8px solid #f44336;
+  border-radius: 80px;
+  background-color: white;
+  text-align: center;
+  color: #3f51b5;
+  padding: 4px;
 }
 
 .create-listing-card {
