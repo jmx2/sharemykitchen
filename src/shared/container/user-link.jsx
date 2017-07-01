@@ -11,7 +11,7 @@ const UserLink = ({ isLoggedIn, user }) => {
 
 UserLink.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
-  user: PropTypes.object, // eslint-disable-line 
+  user: PropTypes.object, // eslint-disable-line
 }
 
 UserLink.defaultProps = {
